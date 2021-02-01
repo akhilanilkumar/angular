@@ -1,0 +1,26 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Name</th>
+			<th scope="col">Username</th>
+			<th scope="col">Email</th>
+			<th scope="col">Company Name</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let product of productList">
+			<th scope="row">{{product.id}}</th>
+			<td>{{product.name}}</td>
+			<td>{{product.username}}</td>
+			<td>
+				<a [attr.href]="'mailto:'+product.email">{{product.email.toLowerCase()}}</a>
+			</td>
+			<td>{{product.company.name | convertToSpace:'-'}}</td>
+			<td>
+			<app-loader [value]="product.address.geo" (notification)="showGeo($event)" ></app-loader>
+			</td>
+		</tr>
+	</tbody>
+</table>
