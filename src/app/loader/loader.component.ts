@@ -7,8 +7,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 })
 export class LoaderComponent {
   @Input("value") val;
-  @Output("notification") notify: EventEmitter<object> = new EventEmitter<
-    object
+  @Output("notification") notify: EventEmitter<number> = new EventEmitter<
+    number
   >();
 
   showGeo() {

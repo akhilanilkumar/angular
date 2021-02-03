@@ -2,7 +2,6 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { error } from "@angular/compiler/src/util";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -13,6 +12,10 @@ export class ProductsService {
 
   getProducts(): Observable<any[]> {
     return this.http.get<any[]>(this.usersUrl);
+  }
+
+  getUserDetails$(id:number):Observable<any[]> {
+    return this.http.get<any[]>(`${this.usersUrl}/${id}`)
   }
 
   private handleError(err: HttpErrorResponse) {

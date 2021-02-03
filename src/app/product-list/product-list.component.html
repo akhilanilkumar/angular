@@ -19,7 +19,7 @@
 			</td>
 			<td>{{product.company.name | convertToSpace:'-'}}</td>
 			<td>
-			<app-loader [value]="product.address.geo" (notification)="showGeo($event)" ></app-loader>
+			<app-loader [value]="product.id" (notification)="showGeo($event)" ></app-loader>
 			</td>
 		</tr>
 	</tbody>
