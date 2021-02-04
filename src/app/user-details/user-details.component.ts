@@ -1,3 +1,4 @@
+import { User } from './../shared/users';
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ProductsService } from "../shared/products.service";
@@ -9,7 +10,7 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ["./user-details.component.css"]
 })
 export class UserDetailsComponent implements OnInit {
-  user;
+  user:User;
   constructor(private route: ActivatedRoute, private productService:ProductsService) {}
 
   ngOnInit() {

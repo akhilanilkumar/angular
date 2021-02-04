@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { ProductsService } from "../shared/products.service";
+import { User } from './../shared/users';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, NavigationStart, Router, RouterEvent } from "@angular/router";
 
 @Component({
   selector: "product-list",
@@ -8,16 +8,19 @@ import { ProductsService } from "../shared/products.service";
   styleUrls: ["./product-list.component.css"]
 })
 export class ProductListComponent implements OnInit {
-  constructor(private productService: ProductsService, private route: Router, private activatedRoute:ActivatedRoute) {}
+  constructor(private route: Router, private activatedRoute: ActivatedRoute) { }
 
-  productList: any[];
+  productList: User[];
+  loading: boolean = false;
 
   showGeo(id: number) {
-    // console.log(geo);
     this.route.navigate([`/users`, id]);
   }
 
   ngOnInit() {
-    this.productList = this.activatedRoute.snapshot.data['products'];
+    this.route.events.subscribe((e: RouterEvent) => {
+      this.loading = e instanceof NavigationStart ? true : false;
+    })
+    this.activatedRoute.data.subscribe(data => { this.productList = data['products'] });
   }
 }

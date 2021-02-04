@@ -1,3 +1,4 @@
+import { User } from './users';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { error } from "@angular/compiler/src/util";
 import { Injectable } from "@angular/core";
@@ -10,12 +11,12 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
   private usersUrl = "https://jsonplaceholder.typicode.com/users";
 
-  getProducts(): Observable<any[]> {
-    return this.http.get<any[]>(this.usersUrl);
+  getProducts(): Observable<User[]> {
+    return this.http.get<User[]>(this.usersUrl);
   }
 
-  getUserDetails$(id:number):Observable<any[]> {
-    return this.http.get<any[]>(`${this.usersUrl}/${id}`)
+  getUserDetails$(id:number):Observable<User> {
+    return this.http.get<User>(`${this.usersUrl}/${id}`)
   }
 
   private handleError(err: HttpErrorResponse) {

@@ -48,7 +48,8 @@ body {
 }
 
 .img-radius {
-    border-radius: 5px
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 h6 {

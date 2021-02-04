@@ -14,6 +14,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserDetailGuard } from "./shared/user-detail.guard";
 import { UserResolverService } from './shared/user-resolver.service';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 @NgModule({
   imports: [
@@ -24,13 +25,20 @@ import { UserResolverService } from './shared/user-resolver.service';
       {
         path: "users",
         component: ProductListComponent,
-        resolve: {products: UserListResolverService}
+        resolve: { products: UserListResolverService }
       },
       {
         path: "users/:id",
         component: UserDetailsComponent,
         canActivate: [UserDetailGuard],
-        resolve: { user: UserResolverService }
+        resolve: { user: UserResolverService },
+        children: [
+          { path: 'info', component: UserEditComponent }
+        ]
+      },
+      {
+        path: "users/edit/:id",
+        component: UserEditComponent
       },
       {
         path: "",
@@ -51,9 +59,10 @@ import { UserResolverService } from './shared/user-resolver.service';
     LoaderComponent,
     Page404Component,
     LandingPageComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    UserEditComponent
   ],
   bootstrap: [AppComponent],
-  providers: [UserResolverService, UserResolverService]
+  providers: [UserResolverService, UserListResolverService]
 })
 export class AppModule { }
