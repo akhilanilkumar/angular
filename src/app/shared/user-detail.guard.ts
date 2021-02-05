@@ -15,7 +15,7 @@ export class UserDetailGuard implements CanActivate {
     if(isNaN(id)) {
       console.error("Invalid used id");
       this.route.navigate(['/users'])
-      return false;
+      return true;
     }
     return true;
   }

@@ -1,49 +1,16 @@
-import { UserListResolverService } from './shared/user-list-resolver.service';
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
-import { ConvertToSpacePipe } from "./shared/convert-to-space.pipe";
-import { AppComponent } from "./app.component";
-import { ProductListComponent } from "./product-list/product-list.component";
-import { NavigationComponent } from "./navigation/navigation.component";
-import { LoaderComponent } from "./loader/loader.component";
-import { HttpClientModule } from "@angular/common/http";
-import { Page404Component } from "./page-404/page-404.component";
 import { RouterModule } from "@angular/router";
+import { AppComponent } from "./app.component";
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
-import { UserDetailGuard } from "./shared/user-detail.guard";
-import { UserResolverService } from './shared/user-resolver.service';
-import { UserEditComponent } from './user-edit/user-edit.component';
 import { MessageComponent } from './message/message.component';
+import { NavigationComponent } from "./navigation/navigation.component";
+import { Page404Component } from "./page-404/page-404.component";
+import { UserModule } from './user.module';
 
 @NgModule({
   imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
+    UserModule,
     RouterModule.forRoot([
-      {
-        path: "users",
-        children: [
-          {
-            path: '',
-            component: ProductListComponent,
-            resolve: { products: UserListResolverService }
-          }, {
-            path: ":id",
-            component: UserDetailsComponent,
-            canActivate: [UserDetailGuard],
-            resolve: { user: UserResolverService },
-            children: [
-              { path: 'info', component: UserEditComponent }
-            ],
-          }, {
-            path: "edit/:id",
-            component: UserEditComponent
-          }
-        ]
-      },
       {
         path: "messages",
         component: MessageComponent,
@@ -62,17 +29,11 @@ import { MessageComponent } from './message/message.component';
   ],
   declarations: [
     AppComponent,
-    ProductListComponent,
     NavigationComponent,
-    ConvertToSpacePipe,
-    LoaderComponent,
     Page404Component,
     LandingPageComponent,
-    UserDetailsComponent,
-    UserEditComponent,
-    MessageComponent
   ],
   bootstrap: [AppComponent],
-  providers: [UserResolverService, UserListResolverService]
+  
 })
 export class AppModule { }
