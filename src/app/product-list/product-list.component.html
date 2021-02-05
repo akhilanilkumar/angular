@@ -1,3 +1,6 @@
+<div class="spinner-border text-danger" role="status" *ngIf="loading">
+	<span class="sr-only">Loading...</span>
+</div>
 <table class="table">
 	<thead>
 		<tr>
@@ -19,7 +22,7 @@
 			</td>
 			<td>{{product.company.name | convertToSpace:'-'}}</td>
 			<td>
-			<app-loader [loading]="loading" [value]="product.id" (notification)="showGeo($event)" ></app-loader>
+				<app-loader [loading]="loading" [value]="product.id" (notification)="showGeo($event)"></app-loader>
 			</td>
 		</tr>
 	</tbody>

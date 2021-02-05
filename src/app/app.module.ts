@@ -15,6 +15,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserDetailGuard } from "./shared/user-detail.guard";
 import { UserResolverService } from './shared/user-resolver.service';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   imports: [
@@ -24,21 +25,29 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     RouterModule.forRoot([
       {
         path: "users",
-        component: ProductListComponent,
-        resolve: { products: UserListResolverService }
-      },
-      {
-        path: "users/:id",
-        component: UserDetailsComponent,
-        canActivate: [UserDetailGuard],
-        resolve: { user: UserResolverService },
         children: [
-          { path: 'info', component: UserEditComponent }
+          {
+            path: '',
+            component: ProductListComponent,
+            resolve: { products: UserListResolverService }
+          }, {
+            path: ":id",
+            component: UserDetailsComponent,
+            canActivate: [UserDetailGuard],
+            resolve: { user: UserResolverService },
+            children: [
+              { path: 'info', component: UserEditComponent }
+            ],
+          }, {
+            path: "edit/:id",
+            component: UserEditComponent
+          }
         ]
       },
       {
-        path: "users/edit/:id",
-        component: UserEditComponent
+        path: "messages",
+        component: MessageComponent,
+        outlet: 'popup'
       },
       {
         path: "",
@@ -60,7 +69,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     Page404Component,
     LandingPageComponent,
     UserDetailsComponent,
-    UserEditComponent
+    UserEditComponent,
+    MessageComponent
   ],
   bootstrap: [AppComponent],
   providers: [UserResolverService, UserListResolverService]

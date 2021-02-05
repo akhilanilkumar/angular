@@ -8,14 +8,14 @@ import { Observable, throwError } from "rxjs";
   providedIn: "root"
 })
 export class ProductsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   private usersUrl = "https://jsonplaceholder.typicode.com/users";
-
+  private isDisplayed = false;
   getProducts(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
   }
 
-  getUserDetails$(id:number):Observable<User> {
+  getUserDetails$(id: number): Observable<User> {
     return this.http.get<User>(`${this.usersUrl}/${id}`)
   }
 
@@ -25,5 +25,13 @@ export class ProductsService {
         ? err.error.message
         : `Server returned code: ${err.status}, error message : ${err.message}`;
     return throwError(message);
+  }
+
+  get isMessageDisplayed(){
+    return this.isDisplayed;
+  }
+
+  set isMessageDisplayed(isMessage:boolean) {
+    this.isDisplayed = isMessage;
   }
 }
