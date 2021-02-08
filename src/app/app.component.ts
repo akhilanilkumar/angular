@@ -14,7 +14,6 @@ import {
 export class AppComponent implements OnInit, OnChanges, OnDestroy {
   name = "Angular " + VERSION.major;
   constructor() {
-    console.clear();
   }
 
   ngOnInit() {

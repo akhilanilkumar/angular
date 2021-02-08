@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from "@angular/core";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from "@angular/router";
 import { LoaderComponent } from './loader/loader.component';
 import { MessageComponent } from './message/message.component';
@@ -11,16 +11,21 @@ import { UserListResolverService } from './shared/user-list-resolver.service';
 import { UserResolverService } from './shared/user-resolver.service';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
     imports: [
         FormsModule,
+        ReactiveFormsModule,
         CommonModule,
         RouterModule.forChild([
             {
                 path: '',
                 component: ProductListComponent,
                 resolve: { products: UserListResolverService }
+            }, {
+                path: 'signup',
+                component: SignupComponent
             }, {
                 path: ":id",
                 component: UserDetailsComponent,
@@ -42,7 +47,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
         LoaderComponent,
         UserDetailsComponent,
         UserEditComponent,
-        MessageComponent
+        MessageComponent,
+        SignupComponent
     ],
     providers: [UserResolverService, UserListResolverService]
 })
