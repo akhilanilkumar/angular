@@ -9,10 +9,9 @@ import { ConvertToSpacePipe } from './shared/convert-to-space.pipe';
 import { UserDetailGuard } from './shared/user-detail.guard';
 import { UserListResolverService } from './shared/user-list-resolver.service';
 import { UserResolverService } from './shared/user-resolver.service';
+import { SignupComponent } from './signup/signup.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
-import { SignupComponent } from './signup/signup.component';
-
 @NgModule({
     imports: [
         FormsModule,

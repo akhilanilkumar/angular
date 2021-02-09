@@ -2,11 +2,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from "@angular/router";
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppComponent } from "./app.component";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MessageComponent } from './message/message.component';
 import { NavigationComponent } from "./navigation/navigation.component";
 import { Page404Component } from "./page-404/page-404.component";
+import { UserData } from './shared/user-data';
 @NgModule({
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { Page404Component } from "./page-404/page-404.component";
         path: '**',
         component: Page404Component
       }
-    ])
+    ]),
+    InMemoryWebApiModule.forRoot(UserData)
   ],
   declarations: [
     AppComponent,

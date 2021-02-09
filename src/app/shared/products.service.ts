@@ -9,7 +9,9 @@ import { Observable, throwError } from "rxjs";
 })
 export class ProductsService {
   constructor(private http: HttpClient) { }
-  private usersUrl = "https://jsonplaceholder.typicode.com/users";
+  // private usersUrl = "https://jsonplaceholder.typicode.com/users";
+  
+  private usersUrl = '/api/users'
   private isDisplayed = false;
   getProducts(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
