@@ -1,29 +1,20 @@
 import {
+  AfterContentInit,
+  AfterViewInit,
   Component,
-  OnChanges,
-  OnDestroy,
-  OnInit,
+  ContentChild,
   VERSION
 } from "@angular/core";
+import { NavigationComponent } from "./navigation/navigation.component";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent implements OnInit, OnChanges, OnDestroy {
+export class AppComponent {
   name = "Angular " + VERSION.major;
+  
   constructor() {
-  }
-
-  ngOnInit() {
-    console.log("ngOnInit");
-  }
-  ngOnChanges() {
-    console.log("ngOnChanges");
-  }
-
-  ngOnDestroy() {
-    console.log("ngOnDestroy");
   }
 }

@@ -1,7 +1,8 @@
+import { CustomReuseStrategy } from './shared/custom-reuse-strategy';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from "@angular/router";
+import { RouteReuseStrategy, RouterModule } from "@angular/router";
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppComponent } from "./app.component";
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -41,6 +42,8 @@ import { UserData } from './shared/user-data';
     Page404Component,
     LandingPageComponent,
   ],
+  // providers: [{provide:RouteReuseStrategy, useClass:CustomReuseStrategy}],
+  
   bootstrap: [AppComponent],
 
 })
