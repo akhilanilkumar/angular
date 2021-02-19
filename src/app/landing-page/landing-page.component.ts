@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { interval, Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.css']
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent {
 
-  constructor() { }
+  observable: Observable<number>;
 
-  ngOnInit() {
+  constructor() {
+    this.observable = this.getObservable();
   }
 
+  getObservable(): Observable<number> {
+    return interval(1000).pipe(take(100))
+  }
+
+  clicked() {
+
+  }
 }

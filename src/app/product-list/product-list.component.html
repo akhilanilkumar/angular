@@ -13,7 +13,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let product of productList">
+		<tr *ngFor="let product of (productObservable | async)['products']">
 			<th scope="row">{{product.id}}</th>
 			<td>{{product.name}}</td>
 			<td>{{product.username}}</td>
