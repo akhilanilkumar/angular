@@ -12,9 +12,6 @@ export class UserListResolverService implements Resolve<User[]> {
 
   constructor(private productService: ProductsService) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): User[] | Observable<User[]> | Promise<User[]> {
-    return this.productService.getProducts().pipe(
-      map(products => products),  
-      catchError(err => { throw 'error in source. Details: ' + err })
-      );
+    return this.productService.getProducts$();
   }
 }

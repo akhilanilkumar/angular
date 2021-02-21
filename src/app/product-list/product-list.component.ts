@@ -10,7 +10,7 @@ import { ActivatedRoute, NavigationStart, Router, Event, NavigationCancel, Navig
 })
 export class ProductListComponent implements OnInit {
 
-  productObservable: Observable<any>
+  productObservable$: Observable<any>
   loading: boolean = false;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute) {
@@ -27,6 +27,6 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productObservable = this.activatedRoute.data;
+    this.productObservable$ = this.activatedRoute.data;
   }
 }
